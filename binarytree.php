@@ -70,6 +70,18 @@ class BinaryTree {
         }
     }
 
+    public function levelOrder($binaryTree) {
+        if ($binaryTree->root != null) {
+            echo $binaryTree->root;
+            if ($binaryTree->left != null) {
+                print_r($binaryTree->left);
+            }
+            if ($binaryTree->right != null) {
+                print_r($binaryTree->right);
+            }
+        }
+    }
+
     /**
      * 创建一个二叉树
      * @return Node
@@ -109,8 +121,9 @@ $binaryTree = new BinaryTree();
 $tree = $binaryTree->create();
 echo "<pre>";print_r($tree);
 
-$binaryTree->middleOrder($tree);
-echo "<pre>";print_r($binaryTree->traversedTree);
+$binaryTree->levelOrder($tree);
+//$binaryTree->middleOrder($tree);
+//echo "<pre>";print_r($binaryTree->traversedTree);
 //$binaryTree->preOrder($tree);
 //echo "<pre>";print_r($binaryTree->traversedTree);
 //$binaryTree->afterOrder($tree);
