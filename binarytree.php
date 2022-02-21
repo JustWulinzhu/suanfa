@@ -5,7 +5,7 @@
  * Email: 18515831680@163.com
  * Date: 2022/2/20 下午4:04
  *
- * 二叉树的先序，中序，后序遍历
+ * 二叉树的先序，中序，后序遍历 （递归）
  *
  */
 
@@ -18,22 +18,55 @@ class Node {
 class BinaryTree {
 
     //保存遍历后的二叉树
-    public $traversed_tree = [];
+    public $traversedTree = [];
 
     /**
-     * 先序遍历 (递归法)
+     * 先序遍历
      * @param $binaryTree
      * @return void
      */
     public function preOrder($binaryTree) {
         if ($binaryTree->root != null) {
-            $this->traversed_tree[] = $binaryTree->root;
+            $this->traversedTree[] = $binaryTree->root;
             if (! is_null($binaryTree->left)) {
                 $this->preOrder($binaryTree->left);
             }
             if (! is_null($binaryTree->right)) {
                 $this->preOrder($binaryTree->right);
             }
+        }
+    }
+
+    /**
+     * 中序遍历
+     * @param $binaryTree
+     */
+    public function middleOrder($binaryTree) {
+        if ($binaryTree->root != null) {
+            if ($binaryTree->left != null) {
+                $this->middleOrder($binaryTree->left);
+            }
+            $this->traversedTree[] = $binaryTree->root;
+            if ($binaryTree->right != null) {
+                $this->middleOrder($binaryTree->right);
+            }
+        }
+    }
+
+    /**
+     * 后序遍历
+     * @param $binaryTree
+     * @return void
+     */
+    public function afterOrder($binaryTree) {
+        if ($binaryTree->root != null) {
+            if ($binaryTree->left != null) {
+                $this->afterOrder($binaryTree->left);
+            }
+            if ($binaryTree->right != null) {
+                $this->afterOrder($binaryTree->right);
+            }
+            $this->traversedTree[] = $binaryTree->root;
         }
     }
 
@@ -72,8 +105,13 @@ class BinaryTree {
 
 }
 
-$binary_tree = new BinaryTree();
-$tree = $binary_tree->create();
+$binaryTree = new BinaryTree();
+$tree = $binaryTree->create();
 echo "<pre>";print_r($tree);
-$binary_tree->preOrder($tree);
-echo "<pre>";print_r($binary_tree->traversed_tree);
+
+$binaryTree->middleOrder($tree);
+echo "<pre>";print_r($binaryTree->traversedTree);
+//$binaryTree->preOrder($tree);
+//echo "<pre>";print_r($binaryTree->traversedTree);
+//$binaryTree->afterOrder($tree);
+//echo "<pre>";print_r($binaryTree->traversedTree);
