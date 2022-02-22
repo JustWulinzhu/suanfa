@@ -6,6 +6,7 @@
  * Date: 2022/2/20 下午4:04
  *
  * 二叉树的先序，中序，后序遍历 （递归）
+ * 层序遍历
  *
  */
 
@@ -70,15 +71,21 @@ class BinaryTree {
         }
     }
 
+    /**
+     * 层序遍历
+     * @param $binaryTree
+     * @return void
+     */
     public function levelOrder($binaryTree) {
-        if ($binaryTree->root != null) {
-            echo $binaryTree->root;
-            if ($binaryTree->left != null) {
-                print_r($binaryTree->left);
-            }
-            if ($binaryTree->right != null) {
-                print_r($binaryTree->right);
-            }
+        $queue = array();
+        array_unshift($queue, $binaryTree); #根节点入队
+
+        while (!empty($queue)) { #持续输出节点，直到队列为空
+            $cnode = array_pop($queue); #队尾元素出队
+            echo $cnode->root . ' ';
+            #左节点先入队，然后右节点入队
+            if ($cnode->left != null) array_unshift($queue, $cnode->left);
+            if ($cnode->right != null) array_unshift($queue, $cnode->right);
         }
     }
 
