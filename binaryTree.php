@@ -92,6 +92,25 @@ class BinaryTree {
     }
 
     /**
+     * 获取二叉树的高度
+     * @param $binaryTree
+     * @return int|mixed
+     */
+    public function getDeep($binaryTree) {
+        if (is_null($binaryTree->root)) {
+            return 0;
+        }
+        $depth = 1;
+        if (null === $binaryTree->left && null === $binaryTree->right) {
+            return $depth;
+        }
+        $left = $this->getDeep($binaryTree->left);
+        $right = $this->getDeep($binaryTree->right);
+
+        return max($left, $right) + 1;
+    }
+
+    /**
      * 创建一个二叉树
      * @return Node
      */
@@ -129,6 +148,9 @@ class BinaryTree {
 $binaryTree = new BinaryTree();
 $tree = $binaryTree->create();
 echo "<pre>";print_r($tree);
+
+$deep = $binaryTree->getDeep($tree);
+print_r($deep);die;
 
 $ret = $binaryTree->levelOrder($tree);
 print_r($ret);
