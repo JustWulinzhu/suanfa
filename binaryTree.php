@@ -74,19 +74,21 @@ class BinaryTree {
     /**
      * 层序遍历
      * @param $binaryTree
-     * @return void
+     * @return array
      */
     public function levelOrder($binaryTree) {
-        $queue = array();
-        array_unshift($queue, $binaryTree); #根节点入队
+        $queue = [];
+        array_unshift($queue, $binaryTree); //根节点入队
 
-        while (!empty($queue)) { #持续输出节点，直到队列为空
-            $cnode = array_pop($queue); #队尾元素出队
-            echo $cnode->root . ' ';
-            #左节点先入队，然后右节点入队
-            if ($cnode->left != null) array_unshift($queue, $cnode->left);
-            if ($cnode->right != null) array_unshift($queue, $cnode->right);
+        $ret = [];
+        while (! empty($queue)) { //持续输出节点，直到队列为空
+            $data = array_pop($queue); //队尾元素出队
+            $ret[] = $data->root;
+            //左节点先入队，然后右节点入队
+            if ($data->left != null) array_unshift($queue, $data->left);
+            if ($data->right != null) array_unshift($queue, $data->right);
         }
+        return $ret;
     }
 
     /**
@@ -128,7 +130,8 @@ $binaryTree = new BinaryTree();
 $tree = $binaryTree->create();
 echo "<pre>";print_r($tree);
 
-$binaryTree->levelOrder($tree);
+$ret = $binaryTree->levelOrder($tree);
+print_r($ret);
 //$binaryTree->middleOrder($tree);
 //echo "<pre>";print_r($binaryTree->traversedTree);
 //$binaryTree->preOrder($tree);
