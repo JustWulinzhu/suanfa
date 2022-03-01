@@ -111,6 +111,26 @@ class BinaryTree {
     }
 
     /**
+     * 左右翻转二叉树
+     * @param $binaryTree
+     * @return mixed|null
+     */
+    public function reverseTree($binaryTree) {
+        if (is_null($binaryTree)) {
+            return null;
+        }
+
+        $left = $binaryTree->left;
+        $binaryTree->left = $binaryTree->right;
+        $binaryTree->right = $left;
+
+        $this->reverseTree($binaryTree->left);
+        $this->reverseTree($binaryTree->right);
+
+        return $binaryTree;
+    }
+
+    /**
      * 创建一个二叉树
      * @return Node
      */
@@ -149,8 +169,8 @@ $binaryTree = new BinaryTree();
 $tree = $binaryTree->create();
 echo "<pre>";print_r($tree);
 
-$deep = $binaryTree->getDeep($tree);
-print_r($deep);die;
+$node = $binaryTree->reverseTree($tree);
+print_r($node);die;
 
 $ret = $binaryTree->levelOrder($tree);
 print_r($ret);
