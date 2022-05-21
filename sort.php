@@ -15,7 +15,7 @@ class Sort {
      * 冒泡排序
      * 时间复杂度 O(n²)
      * 在要排序的一组数中，对当前还未排好的序列，从前往后对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。
-     * 即，每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。
+     * 即，对一组数据，比较相邻数据的大小，把小的数据放在前面，值大的放在后面(升序排序)
      * @param $arr
      * @return mixed
      */
@@ -96,5 +96,5 @@ class Sort {
 $sort = new Sort();
 
 $arr = [3, 2, 4, 5, 1];
-$sorted = $sort->select($arr);
+$sorted = $sort->bubble($arr);
 echo "<pre>";print_r($sorted);
