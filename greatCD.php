@@ -7,11 +7,6 @@
  * 求最大公约数
  */
 
-/**
- * @param $num1
- * @param $num2
- * @return mixed
- */
 function greatCD($num1, $num2) {
     if ($num1 == $num2) {
         return $num1;

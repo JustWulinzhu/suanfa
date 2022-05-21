@@ -18,12 +18,10 @@ class LinkedList {
     public function create($start = 1, $end = 5) {
         //头插法创建一个链表
         $linkedlist = new Node();
-        $linkedlist->next = null;
-        $linkedlist->data = "";
 
         for ($i=$start; $i<=$end; $i++) {
             $node = new Node();
-            $node->data = "$i";
+            $node->data = $i;
             $node->next = $linkedlist->next;
             $linkedlist->next = $node;
         }
@@ -120,8 +118,8 @@ class LinkedList {
 }
 
 $linkedlist = new LinkedList();
-$list1 = $linkedlist->create();
-//echo "<pre>"; var_dump($list1);
+$list1 = $linkedlist->createTmp1();
+echo "<pre>"; print_r($list1);
 
 //$list2 = $linkedlist->createTmp1();
 //$list3 = $linkedlist->createTmp2();

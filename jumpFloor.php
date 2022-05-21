@@ -42,5 +42,23 @@ class Fibonacci {
 
 }
 
-$ret = (new Fibonacci())->jump(20);
+/**
+ * 记忆化搜索，每次递归把算出来的值保存下来，下次使用
+ * 时间复杂度可降为O(n)
+ * @param $num
+ * @return int|mixed
+ */
+function jump($num) {
+    global $ret; //声明全局变量
+    if ($num < 3) {
+        return $num;
+    }
+    if (isset($ret[$num])) {
+        return $ret[$num];
+    }
+    $ret[$num] = jump($num - 1) + jump($num - 2);
+    return $ret[$num];
+}
+
+$ret = jump(50);
 print_r($ret);

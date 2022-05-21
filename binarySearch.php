@@ -3,16 +3,12 @@
  * 二分查找（折半查找）
  * 时间复杂度 O(log2n)
  * 假设有n个数 ，查找的过程依次是：n/2, n/4，n/8 ... 直到 等于1的时候代表找到目标数了，
- * 所以假设x是查找的次数，(1/2)的x次方 乘以n 等于 1, 得出x = log2n
+ * 所以假设x是查找的次数，(1/2)的x次方 乘以n 等于 1, 得出x = log2N，以2为底 N的对数，也记作logN
  *
- * 折半查找
+ * 二分查找的前提是被查找的是一个有序数列
+ * Mysql 索引B+树单点的遍历查询就是采用了二分查找算法
  */
 
-/**
- * @param $arr
- * @param $target
- * @return int
- */
 function binarySearch($arr, $target) {
     if (empty($arr)) {
         return -1;
