@@ -9,6 +9,7 @@ class Node {
 
     public function __construct($data = '') {
         $this->data = $data;
+        $this->next = null;
     }
 }
 
@@ -23,7 +24,8 @@ class LinkedList {
             $node = new Node();
             $node->data = $i;
             $node->next = $linkedlist->next;
-            $linkedlist->next = $node;
+
+            $linkedlist->next = $node; //指定链表的下个节点是上面的$node
         }
 
         return $linkedlist;
@@ -118,7 +120,7 @@ class LinkedList {
 }
 
 $linkedlist = new LinkedList();
-$list1 = $linkedlist->createTmp1();
+$list1 = $linkedlist->create();
 echo "<pre>"; print_r($list1);
 
 //$list2 = $linkedlist->createTmp1();
